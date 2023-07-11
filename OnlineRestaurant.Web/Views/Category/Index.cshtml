@@ -1,0 +1,40 @@
+﻿@model List<CategoryModel>
+
+<div class="container w-50">
+    <input name="id" hidden />
+    <div class="d-flex justify-content-center">
+        <div>
+            <h2 class="text-success">Category List</h2>
+        </div>
+
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var elem in Model.OrderBy(i => i.Id))
+            {
+                <tr>
+                    <td>@elem.Title</td>
+                    <td>
+                        <div class="d-flex justify-content-end">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@elem.Id" class="btn btn-primary m-1"><i class="bi bi-pencil"></i></a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@elem.Id" class="btn btn-danger m-1"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-1">
+        <div>
+            <a asp-controller="Category" asp-action="Create" class="btn btn-outline-success"><i class="bi bi-plus-circle"></i> Create category</a>
+        </div>
+    </div>
+</div>
