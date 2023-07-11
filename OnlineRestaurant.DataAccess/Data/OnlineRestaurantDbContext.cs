@@ -2,7 +2,9 @@
 
 namespace OnlineRestaurant.DataAccess.Data;
 
-public class OnlineRestaurantDbConnection : DbContext
+public class OnlineRestaurantDbContext : DbContext
 {
-    public OnlineRestaurant(DbContextOptions<On>)
+    public OnlineRestaurantDbContext(DbContextOptions<OnlineRestaurantDbContext> options) : base(options) {}
+    
+    
 }
