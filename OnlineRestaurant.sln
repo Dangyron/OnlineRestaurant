@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRestaurant.Web", "OnlineRestaurant.Web\OnlineRestaurant.Web.csproj", "{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
