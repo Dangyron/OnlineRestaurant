@@ -6,4 +6,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\OnlineRestaurant.DataAccess\OnlineRestaurant.DataAccess.csproj" />
+      <ProjectReference Include="..\OnlineRestaurant.Models\OnlineRestaurant.Models.csproj" />
+      <ProjectReference Include="..\OnlineRestaurant.Utility\OnlineRestaurant.Utility.csproj" />
+    </ItemGroup>
+
 </Project>

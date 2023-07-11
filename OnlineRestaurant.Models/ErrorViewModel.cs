@@ -1,4 +1,4 @@
-namespace OnlineRestaurant.Web.Models;
+namespace OnlineRestaurant.Models;
 
 public class ErrorViewModel
 {

@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRestaurant.Web", "OnlineRestaurant.Web\OnlineRestaurant.Web.csproj", "{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRestaurant.Utility", "OnlineRestaurant.Utility\OnlineRestaurant.Utility.csproj", "{3E53B117-3DAB-4AD9-B181-4B00EA9515AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRestaurant.Models", "OnlineRestaurant.Models\OnlineRestaurant.Models.csproj", "{CDADF3AE-F57C-4F1F-B23D-A3C622EF1AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRestaurant.DataAccess", "OnlineRestaurant.DataAccess\OnlineRestaurant.DataAccess.csproj", "{53ED26EB-77E6-47F9-86D3-550445A57F3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A904EE5A-5175-4C9C-ABB8-9DEA00E40440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E53B117-3DAB-4AD9-B181-4B00EA9515AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E53B117-3DAB-4AD9-B181-4B00EA9515AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E53B117-3DAB-4AD9-B181-4B00EA9515AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E53B117-3DAB-4AD9-B181-4B00EA9515AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDADF3AE-F57C-4F1F-B23D-A3C622EF1AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDADF3AE-F57C-4F1F-B23D-A3C622EF1AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDADF3AE-F57C-4F1F-B23D-A3C622EF1AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDADF3AE-F57C-4F1F-B23D-A3C622EF1AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53ED26EB-77E6-47F9-86D3-550445A57F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53ED26EB-77E6-47F9-86D3-550445A57F3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53ED26EB-77E6-47F9-86D3-550445A57F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53ED26EB-77E6-47F9-86D3-550445A57F3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

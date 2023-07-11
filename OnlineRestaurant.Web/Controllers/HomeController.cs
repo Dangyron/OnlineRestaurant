@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using OnlineRestaurant.Web.Models;
+using OnlineRestaurant.Models;
 
 namespace OnlineRestaurant.Web.Controllers;
 
