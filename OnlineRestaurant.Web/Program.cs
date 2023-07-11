@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineRestaurant.DataAccess.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<OnlineRestaurantDbContext>(options =>
+    {
+        options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreConnection"));
+    }
+);
 
 var app = builder.Build();
 
