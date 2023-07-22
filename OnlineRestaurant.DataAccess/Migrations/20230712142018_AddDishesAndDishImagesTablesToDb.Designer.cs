@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OnlineRestaurant.DataAccess.Data;
@@ -12,9 +13,11 @@ using OnlineRestaurant.DataAccess.Data;
 namespace OnlineRestaurant.DataAccess.Migrations
 {
     [DbContext(typeof(OnlineRestaurantDbContext))]
-    partial class OnlineRestaurantDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230712142018_AddDishesAndDishImagesTablesToDb")]
+    partial class AddDishesAndDishImagesTablesToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,18 +57,12 @@ namespace OnlineRestaurant.DataAccess.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<int>("DishId")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("Image")
                         .IsRequired()
                         .HasColumnType("bytea");
-
-                    b.Property<List<DateTime>>("UpdateDates")
-                        .HasColumnType("timestamp with time zone[]");
 
                     b.HasKey("Id");
 

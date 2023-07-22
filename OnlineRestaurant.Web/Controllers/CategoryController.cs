@@ -44,10 +44,15 @@ public class CategoryController : Controller
         return RedirectToAction("Index");
     }
 
-    private async Task NameValidation(CategoryModel model)
+    private async Task NameValidation(CategoryModel model, int id = 0)
     {
         var name = model.Title.ToLower();
-
+        if (id != 0)
+        {
+            var dish = await _unitOfWork.Categories.GetByIdAsync(id);
+            if (dish is not null && dish.Title == model.Title)
+                return;
+        }
         var categories = await _unitOfWork.Categories.GetAllAsync();
         
         if (categories is not null)
@@ -69,7 +74,7 @@ public class CategoryController : Controller
         if (id is null or 0)
             return NotFound();
 
-        var category = await _unitOfWork.Categories.GetAsync(x => x.Id == id);
+        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
 
         if (category == null)
             return NotFound();
@@ -100,7 +105,7 @@ public class CategoryController : Controller
         if (id is null or 0)
             return NotFound();
 
-        var category = await _unitOfWork.Categories.GetAsync(x => x.Id == id);
+        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
 
         if (category == null)
             return NotFound();
@@ -111,7 +116,7 @@ public class CategoryController : Controller
     [HttpPost, ActionName("Delete")]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
-        var category = await _unitOfWork.Categories.GetAsync(x => x.Id == id);
+        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
         if (category == null)
             return NotFound();
 

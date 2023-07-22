@@ -1,7 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using System.Globalization
+@model List<DishModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to my restaurant</h1>
+<div class="row pb-3">
+    @foreach (var dish in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1 mb-1">
+                    <div class="card border-0 p-3 shadow border-5 rounded"> 
+                        @if(dish.Images is not null && dish.Images.Any()) {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(dish.Images.First().Image)" class="card-img-top rounded" width="100" height="200"/>
+                        }
+                        else {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                        }
+                        
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-white opacity-75 text-uppercase text-center">@dish.Name</p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-white text-opacity-75 text-center mb-0">
+                                    Price: @dish.Price.ToString("c", new CultureInfo("en-US"))
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Details"
+                            asp-route-productId="@dish.Id"
+                            class="mt-2 btn btn-primary bg-gradient border-0 form-control">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

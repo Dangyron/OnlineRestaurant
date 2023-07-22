@@ -1,16 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using OnlineRestaurant.Models.Validators;
 
 namespace OnlineRestaurant.Models;
 
-public class CategoryModel
+public class DishImageModel
 {
     [Key]
     public int Id { get; set; }
+
+    [Required] public byte[] Image { get; set; } = null!;
     
-    [TitleValidation]
-    public string Title { get; set; } = null!;
+    public int DishId { get; set; }
+    
+    [ForeignKey(nameof(DishId))]
+    public DishModel Dish { get; set; }
     
     [ValidateNever]
     public DateTime CreationDate { get; set; }
