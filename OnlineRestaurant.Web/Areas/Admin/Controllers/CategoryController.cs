@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineRestaurant.DataAccess.Repository.IRepository;
 using OnlineRestaurant.Models;
+using OnlineRestaurant.Utility;
 
-namespace OnlineRestaurant.Web.Controllers;
+namespace OnlineRestaurant.Web.Areas.Admin.Controllers;
 
+[Area("Admin")]
+[Authorize(Roles=Constants.RoleAdmin)]
 public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;

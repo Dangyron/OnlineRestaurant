@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineRestaurant.DataAccess.Repository.IRepository;
 using OnlineRestaurant.Models;
 
-namespace OnlineRestaurant.Web.Controllers;
+namespace OnlineRestaurant.Web.Areas.Customer.Controllers;
 
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
