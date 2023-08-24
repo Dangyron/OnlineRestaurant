@@ -1,0 +1,68 @@
+﻿@model ShoppingCartViewModel
+
+<div class="container w-50">
+    <form method="post">
+        <div class="mt-4">
+            <div class="row">
+                <div class="col-6">
+                    <h4 class="pt-2 text-success">Order Summary</h4>
+                </div>
+                <div class="col-6 text-end">
+                    <a asp-action="Index" class="btn btn-outline-danger btn-sm">Back to Cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2 p-1">
+            <label asp-for="OrderMainInfo!.User.Name" class="p-0"></label>
+            <input asp-for="OrderMainInfo!.User.Name" class="form-control"/>
+            <span asp-validation-for="OrderMainInfo!.User.Name" class="text-danger"></span>
+        </div>
+
+        <div class="row mb-2 p-1">
+            <label asp-for="OrderMainInfo!.User.Address" class="p-0"></label>
+            <input asp-for="OrderMainInfo!.User.Address" class="form-control"/>
+            <span asp-validation-for="OrderMainInfo!.User.Address" class="text-danger"></span>
+        </div>
+
+        <div class="row mb-2 p-1">
+            <label asp-for="OrderMainInfo!.User.PhoneNumber" class="p-0"></label>
+            <input asp-for="OrderMainInfo!.User.PhoneNumber" class="form-control"/>
+            <span asp-validation-for="OrderMainInfo!.User.PhoneNumber" class="text-danger"></span>
+        </div>
+
+
+        <div class="mt-3">
+            <h4 class="pt-2 text-white">Your dishes:</h4>
+            <ul>
+                @foreach (var elem in Model.ShoppingCarts!)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h6 class="my-0">@elem.Dish.Name</h6>
+                            <small class="text-muted">Quantity: @elem.Count</small>
+                        </div>
+                        <span class="text-muted">@elem.Price $</span>
+                    </li>
+                }
+                <li class="list-group-item d-flex justify-content-between mt-4">
+                    <h4 class="text-info">Total</h4>
+                    <strong class="text-info">@Model.OrderMainInfo!.OrderTotal $</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 col-md-3 align-content-md-center">
+                @if (Model.OrderMainInfo!.OrderTotal > 0)
+                {
+                    <button type="submit" asp-action="Purchase" class="btn btn-primary form-control">Buy</button>
+                }
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

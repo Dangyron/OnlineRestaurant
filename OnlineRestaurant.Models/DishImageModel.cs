@@ -12,9 +12,8 @@ public class DishImageModel
     [Required] public byte[] Image { get; set; } = null!;
     
     public int DishId { get; set; }
-    
-    [ForeignKey(nameof(DishId))]
-    public DishModel Dish { get; set; }
+
+    [ForeignKey(nameof(DishId))] public DishModel Dish { get; set; } = null!;
     
     [ValidateNever]
     public DateTime CreationDate { get; set; }

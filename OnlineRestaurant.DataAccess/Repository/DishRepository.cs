@@ -28,6 +28,7 @@ public class DishRepository : Repository<DishModel>, IDishRepository
         model.Price = entity.Price;
         model.VisitCount = entity.VisitCount;
         model.CategoryId = entity.CategoryId;
+        model.Images = entity.Images;
 
         await _dbContext.SaveChangesAsync();
     }

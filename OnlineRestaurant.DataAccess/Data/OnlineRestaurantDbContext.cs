@@ -12,4 +12,12 @@ public class OnlineRestaurantDbContext : DbContext
     public DbSet<DishModel> Dishes { get; set; }
     
     public DbSet<DishImageModel> DishImages { get; set; }
+
+    public DbSet<UserModel> Users { get; set; }
+    
+    public DbSet<ShoppingCartModel> ShoppingCarts { get; set; }
+    
+    public DbSet<OrderDetailModel> OrderDetails { get; set; }
+
+    public DbSet<OrderMainInfoModel> OrderMainInfos { get; set; }
 }

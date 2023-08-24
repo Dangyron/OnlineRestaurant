@@ -3,10 +3,10 @@
   <component name="EfCoreDialogsState">
     <option name="keyValueStorage">
       <map>
-        <entry key="Common:53ed26eb-77e6-47f9-86d3-550445a57f3d:dbContext" value="OnlineRestaurant.DataAccess.Data.OnlineRestaurantIdentityDbContext" />
+        <entry key="Common:53ed26eb-77e6-47f9-86d3-550445a57f3d:dbContext" value="OnlineRestaurant.DataAccess.Data.OnlineRestaurantDbContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
         <entry key="Common:noBuild" value="false" />
-        <entry key="Common:outputFolder" value="IdentityMigrations" />
+        <entry key="Common:outputFolder" value="Migrations" />
         <entry key="Common:useDefaultConnection" value="true" />
       </map>
     </option>

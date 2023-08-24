@@ -7,7 +7,7 @@ using OnlineRestaurant.Utility;
 namespace OnlineRestaurant.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles=Constants.RoleAdmin)]
+[Authorize(Roles = Constants.RoleAdmin)]
 public class CategoryController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -45,7 +45,7 @@ public class CategoryController : Controller
         await _unitOfWork.SaveChangesAsync();
         
         TempData["success"] = "Category created successfully";
-        return RedirectToAction("Index");
+        return RedirectToAction(nameof(Index));
     }
 
     private async Task NameValidation(CategoryModel model, int id = 0)
@@ -75,10 +75,7 @@ public class CategoryController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int? id)
     {
-        if (id is null or 0)
-            return NotFound();
-
-        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
+        var category = await GetCategoryById(id);
 
         if (category == null)
             return NotFound();
@@ -100,35 +97,28 @@ public class CategoryController : Controller
 
         TempData["success"] = "Category updated successfully";
 
-        return RedirectToAction("Index");
+        return RedirectToAction(nameof(Index));
     }
-    
-    [HttpGet]
+
+    [HttpDelete]
     public async Task<IActionResult> Delete(int? id)
     {
-        if (id is null or 0)
-            return NotFound();
-
-        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
-
+        var category = await GetCategoryById(id);
+        
         if (category == null)
             return NotFound();
-
-        return View(category);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeleteConfirmed(int? id)
-    {
-        var category = await _unitOfWork.Categories.GetByIdAsync(id.Value);
-        if (category == null)
-            return NotFound();
-
+        
         await _unitOfWork.Categories.DeleteAsync(category);
         await _unitOfWork.SaveChangesAsync();
+
+        return Json(new { success = true, message = "Category deleted successfully" });
+    }
+
+    private async Task<CategoryModel?> GetCategoryById(int? id)
+    {
+        if (id is null or 0)
+            return null;
         
-        TempData["success"] = "Category deleted successfully";
-        
-        return RedirectToAction("Index");
+        return await _unitOfWork.Categories.GetByIdAsync(id.Value);
     }
 }

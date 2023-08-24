@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
+using OnlineRestaurant.DataAccess.Data;
 using OnlineRestaurant.Models;
 using OnlineRestaurant.Models.Validators;
 using OnlineRestaurant.Utility;
@@ -145,6 +146,7 @@ namespace OnlineRestaurant.Web.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                Input.Role ??= Constants.RoleCustomer;
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -152,11 +154,11 @@ namespace OnlineRestaurant.Web.Areas.Identity.Pages.Account
 
                 user.Address = Input.Address;
                 user.Name = Input.Name;
-                user.Role = Input.Role ?? Constants.RoleCustomer;
+                user.Role = Input.Role;
                 user.PhoneNumber = Input.PhoneNumber;
                 
                 var result = await _userManager.CreateAsync(user, Input.Password);
-
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -174,13 +176,14 @@ namespace OnlineRestaurant.Web.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
@@ -201,8 +204,8 @@ namespace OnlineRestaurant.Web.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(Models.UserModel)}'. " +
-                    $"Ensure that '{nameof(Models.UserModel)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserModel)}'. " +
+                    $"Ensure that '{nameof(UserModel)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

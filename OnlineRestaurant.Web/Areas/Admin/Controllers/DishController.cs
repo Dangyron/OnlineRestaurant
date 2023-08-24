@@ -68,7 +68,7 @@ public class DishController : Controller
         await _unitOfWork.SaveChangesAsync();
         
         TempData["success"] = "Dish created successfully";
-        return RedirectToAction("Index");
+        return RedirectToAction(nameof(Index));
     }
 
     private async Task WriteImagesToDbAsync(List<IFormFile> files, int id)
@@ -150,35 +150,22 @@ public class DishController : Controller
 
         TempData["success"] = "Category updated successfully";
 
-        return RedirectToAction("Index");
+        return RedirectToAction(nameof(Index));
     }
-    
-    [HttpGet]
+
     public async Task<IActionResult> Delete(int? id)
     {
         if (id is null or 0)
             return NotFound();
-
+        
         var dish = await _unitOfWork.Dishes.GetByIdAsync(id.Value);
-
         if (dish == null)
             return NotFound();
-
-        return View(dish);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeleteConfirmed(int? id)
-    {
-        var dish = await _unitOfWork.Categories.GetAsync(x => x.Id == id);
-        if (dish == null)
-            return NotFound();
-
-        await _unitOfWork.Categories.DeleteAsync(dish);
+        
+        await _unitOfWork.Dishes.DeleteAsync(dish);
+        await _unitOfWork.DishImages.DeleteAsync(await _unitOfWork.DishImages.GetAsync(i => i.DishId == dish.Id)?? throw new ArgumentNullException());
         await _unitOfWork.SaveChangesAsync();
-        
-        TempData["success"] = "Category deleted successfully";
-        
-        return RedirectToAction("Index");
+
+        return Json(new { success = true, message = "Dish deleted successfully" });
     }
 }

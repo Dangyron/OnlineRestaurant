@@ -4,11 +4,11 @@ using OnlineRestaurant.DataAccess.Repository;
 using OnlineRestaurant.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using OnlineRestaurant.Models;
+using OnlineRestaurant.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<OnlineRestaurantDbContext>(options =>

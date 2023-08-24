@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace OnlineRestaurant.Models;
+namespace OnlineRestaurant.Utility;
 
 public class EmailSender : IEmailSender
 {

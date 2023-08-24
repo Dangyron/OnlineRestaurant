@@ -1,0 +1,84 @@
+﻿@model ShoppingCartViewModel
+
+<form method="post">
+    <input asp-for="OrderMainInfo.Id" hidden/>
+    <div class="container w-50">
+        <div class="d-flex justify-content-center">
+            <div>
+                <h2 class="text-success">Shopping cart</h2>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-primary mb-2">
+                <span>Continue shopping</span>
+            </a>
+        </div>
+        @if (Model.ShoppingCarts is not null)
+        {
+            foreach (var elem in Model.ShoppingCarts.OrderBy(i => i.Id))
+            {
+                <div class="row border-bottom pb-3">
+                    <div class="d-none d-lg-block col-lg-1 text-center py-2">
+                        @if (elem.Dish.Images is not null && elem.Dish.Images.Any())
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(elem.Dish.Images.First().Image)" class="card-img-top rounded" width="100" height="200"/>
+                        }
+                        else
+                        {
+                            <img src="https://placehold.co/500x600/png" class="card-img-top rounded"/>
+                        }
+                    </div>
+                    <div class="col-12 col-lg-6 pt-md-3">
+                        <span class="text-uppercase text-white">@elem.Dish.Name</span>
+                    </div>
+                    <div class="col-12  col-lg-5 text-center row">
+                        <div class="col-3 text-md-right pt-2 pt-md-4">
+                            <h6 class="fw-semibold">
+                                @elem.Dish.Price$
+                                <span class="text-muted">&nbsp;x&nbsp;</span>@elem.Count
+                            </h6>
+                        </div>
+                        <div class="col-6 col-sm-4 col-lg-6 pt-2">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="ShoppingCart" asp-action="AddOneDish" asp-route-cartId="@elem.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                    <i class="bi bi-plus-square"></i>
+                                </a> &nbsp;
+                                <a asp-controller="ShoppingCart" asp-action="RemoveOneDish" asp-route-cartId="@elem.Id" class="btn btn-outline-primary bg-gradient py-2">
+                                    <i class="bi bi-dash-square"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-3 col-sm-4 col-lg-2 offset-lg-1 text-right pt-2">
+                            <a onclick="Delete('/customer/shoppingcart/delete/@elem.Id')" class="btn btn-danger m-1">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="row">
+            <div class="col-md-4">
+                <ul class="list-group mb-4">
+                    <li class="d-flex justify-content-between align-items-center text-white">
+                        <h5 class="fw-semibold text-uppercase"> Total </h5>
+                        <h4 class="fw-bolder">@Model.OrderMainInfo!.OrderTotal$</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-5">
+                <a asp-action="PurchasePreparation" class="btn btn-primary border-0 bg-gradient w-100 py-2">Purchase</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script src="js/site.js"></script>
+}
